@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Microsoft Excel Training for Auditors</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a365d; --secondary: #2c5282; --accent: #ed8936; --accent-light: #fbd38d; --success: #38a169; --danger: #e53e3e; --bg-dark: #0f172a; --bg-light: #f8fafc; --text-dark: #1e293b; --text-light: #64748b; --code-bg: #1e293b; --border: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.7; }
+        .slide-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .slide { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 48px 56px; margin-bottom: 40px; page-break-inside: avoid; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+        .title-slide { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; text-align: center; padding: 80px 56px; min-height: 500px; display: flex; flex-direction: column; justify-content: center; }
+        .title-slide::before { display: none; }
+        .title-slide h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 800; margin-bottom: 24px; line-height: 1.2; }
+        .title-slide .subtitle { font-size: 1.4rem; opacity: 0.9; margin-bottom: 40px; }
+        .title-slide .workbook-info { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; margin-top: 32px; }
+        .title-slide .workbook-info h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--accent-light); }
+        .section-slide { background: var(--bg-dark); color: white; text-align: center; padding: 60px 56px; }
+        .section-slide::before { background: var(--accent); }
+        .section-slide h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 16px; }
+        .section-slide .section-number { font-size: 4rem; font-weight: 700; color: var(--accent); opacity: 0.3; position: absolute; right: 56px; top: 40px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 24px; }
+        h3 { font-size: 1.25rem; color: var(--secondary); margin: 28px 0 14px; font-weight: 600; }
+        h4 { font-size: 1.05rem; color: var(--primary); margin: 20px 0 10px; font-weight: 600; }
+        p { margin-bottom: 12px; }
+        .formula-box { background: var(--code-bg); color: #e2e8f0; font-family: 'IBM Plex Mono', monospace; padding: 18px 22px; border-radius: 10px; margin: 16px 0; font-size: 0.92rem; overflow-x: auto; border-left: 4px solid var(--accent); }
+        .formula-box .syntax { color: var(--accent-light); font-weight: 500; display: block; margin-bottom: 8px; }
+        .formula-box .example { color: #68d391; display: block; margin-top: 6px; }
+        .formula-box .result { color: #63b3ed; display: block; margin-top: 4px; font-style: italic; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.88rem; }
+        .data-table th { background: var(--primary); color: white; padding: 12px 14px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        .data-table tr:hover { background: #f1f5f9; }
+        .data-table tr:nth-child(even) { background: #f8fafc; }
+        .audit-scenario { background: linear-gradient(135deg, #fff5f5, #fed7d7); border-left: 4px solid var(--danger); border-radius: 0 10px 10px 0; padding: 18px 22px; margin: 18px 0; }
+        .audit-scenario h4 { color: var(--danger); margin-top: 0; margin-bottom: 10px; }
+        .audit-scenario h4::before { content: '🔍 '; }
+        .tip-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-left: 4px solid var(--accent); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 16px 0; }
+        .tip-box h4 { color: #d97706; margin-top: 0; margin-bottom: 8px; }
+        .tip-box h4::before { content: '💡 '; }
+        .function-box { background: linear-gradient(135deg, #f0fff4, #c6f6d5); border: 2px solid var(--success); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+        .function-box h4 { color: var(--success); margin-top: 0; font-size: 1.1rem; }
+        .function-box .purpose { background: white; padding: 12px 16px; border-radius: 6px; margin: 12px 0; border-left: 3px solid var(--success); }
+        .example-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin: 16px 0; }
+        .example-box h5 { color: var(--secondary); margin: 0 0 12px 0; font-size: 1rem; }
+        .example-box .scenario { color: var(--text-light); font-style: italic; margin-bottom: 10px; }
+        .formula-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 22px 0; }
+        .formula-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+        .formula-card h4 { margin-top: 0; color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+        .formula-card code { font-family: 'IBM Plex Mono', monospace; background: var(--code-bg); color: var(--accent-light); padding: 3px 7px; border-radius: 4px; font-size: 0.82rem; }
+        .formula-card .purpose { font-size: 0.9rem; color: var(--text-light); margin: 8px 0; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 22px 0; }
+        @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+        .steps { counter-reset: step; list-style: none; padding: 0; }
+        .steps li { counter-increment: step; padding: 14px 14px 14px 52px; position: relative; margin-bottom: 12px; background: #f8fafc; border-radius: 8px; }
+        .steps li::before { content: counter(step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; }
+        kbd { background: linear-gradient(180deg, #f8fafc, #e2e8f0); border: 1px solid #cbd5e1; border-radius: 4px; padding: 3px 7px; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; box-shadow: 0 2px 0 #94a3b8; }
+        .nav-toc { background: white; border-radius: 16px; padding: 28px; margin-bottom: 36px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .nav-toc h3 { color: var(--primary); margin-top: 0; font-family: 'Playfair Display', serif; }
+        .nav-toc ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+        .nav-toc li { padding: 10px 14px; background: #f8fafc; border-radius: 6px; border-left: 3px solid var(--accent); font-weight: 500; font-size: 0.9rem; }
+        .nav-toc a { color: var(--text-dark); text-decoration: none; }
+        code { font-family: 'IBM Plex Mono', monospace; background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.88em; }
+        .workbook-ref { background: linear-gradient(135deg, #ebf8ff, #bee3f8); border: 1px solid #90cdf4; border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 0.9rem; }
+        .workbook-ref strong { color: #2b6cb0; }
+        .workbook-ref .columns { margin-top: 8px; font-size: 0.85rem; color: #4a5568; }
+        .warning-box { background: linear-gradient(135deg, #fff5f5, #feb2b2); border-left: 4px solid #c53030; border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 16px 0; }
+        .warning-box h4 { color: #c53030; margin-top: 0; }
+        .warning-box h4::before { content: '⚠️ '; }
+        .result-highlight { background: #fefcbf; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        .exercise-box { background: linear-gradient(135deg, #e6fffa, #b2f5ea); border: 2px solid var(--success); border-radius: 10px; padding: 20px 24px; margin: 22px 0; }
+        .exercise-box h4 { color: var(--success); margin-top: 0; margin-bottom: 12px; }
+        .exercise-box h4::before { content: '📝 '; }
+        .exercise-box .prompt { font-weight: 500; margin-bottom: 12px; }
+        .exercise-box .hint { background: rgba(255,255,255,0.7); padding: 10px 14px; border-radius: 6px; margin-top: 12px; font-size: 0.9rem; color: #4a5568; border-left: 3px solid var(--success); }
+        @media print { .slide { page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } .section-slide { page-break-before: always; } }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+
+<!-- Title Slide -->
+<div class="slide title-slide">
+    <h1>Advanced Microsoft Excel Training for Auditors</h1>
+    <p class="subtitle">Master Essential Excel Functions & Techniques for Professional Auditing</p>
+    <div class="workbook-info">
+        <h3>📊 Training Workbook: Audit_Training_Excel_Full_Workbook.xlsx</h3>
+        <p><strong>Sheets:</strong> General_Ledger (2,000 transactions) • Chart_of_Accounts (8 accounts) • Departments (4) • Vendors (5) • Students (300) • Payment_Methods (4) • Audit_Parameters</p>
+        <p style="margin-top: 12px;"><strong>Key Columns in General_Ledger:</strong> tx_id, date, account, description, department, debit, credit, fraud_flag, reference, posting_date, payment_method, entered_by_email, vendor_name</p>
+    </div>
+</div>
+
+<!-- Table of Contents -->
+<div class="nav-toc">
+    <h3>📋 Training Modules</h3>
+    <ul>
+        <li><a href="#logical">10. Logical Formulas</a></li>
+        <li><a href="#math">11. Math Formulas</a></li>
+        <li><a href="#lookup">12. Lookup & Reference</a></li>
+        <li><a href="#statistical">13. Statistical Formulas</a></li>
+        <li><a href="#text">14. Text Formulas</a></li>
+        <li><a href="#datetime">15. Date & Time</a></li>
+        <li><a href="#mixmatch">16. Mix and Match</a></li>
+        <li><a href="#named">17. Named Ranges</a></li>
+        <li><a href="#validation">18. Data Validation</a></li>
+        <li><a href="#sorting">19. Sorting & Filtering</a></li>
+        <li><a href="#conditional">20. Conditional Formatting</a></li>
+        <li><a href="#charts">21. Excel Charting</a></li>
+        <li><a href="#pivot">24. Pivot Tables</a></li>
+        <li><a href="#protection">25. Protection</a></li>
+        <li><a href="#macros">26. Macros</a></li>
+    </ul>
+</div>
+
+<!-- ==================== SECTION 10: LOGICAL FORMULAS ==================== -->
+<div class="slide section-slide" id="logical">
+    <span class="section-number">10</span>
+    <h2>Logical Formulas</h2>
+    <p>AND, OR, NOT, TRUE, FALSE, IF, IFERROR, IS Functions</p>
+</div>
+
+<div class="slide">
+    <h2>Introduction to Logical Formulas</h2>
+    <p>Logical formulas evaluate conditions and return TRUE or FALSE. They are the foundation for decision-making in Excel and are essential for auditors who need to test data against specific criteria, flag anomalies, and automate audit procedures.</p>
+    
+    <div class="workbook-ref">
+        <strong>📁 Primary Sheet:</strong> General_Ledger (2,000 transactions)
+        <div class="columns"><strong>Key Columns Used:</strong> F (debit), G (credit), H (fraud_flag), J (posting_date), K (payment_method), E (department)</div>
+    </div>
+</div>
+
+<!-- AND Function -->
+<div class="slide">
+    <h2>AND Function</h2>
+    
+    <div class="function-box">
+        <h4>AND(logical1, [logical2], ...)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Returns TRUE only if <u>ALL</u> conditions are TRUE. If any single condition is FALSE, the entire function returns FALSE. Think of it as a strict "all must pass" test.
+        </div>
+        <p><strong>When to use:</strong> When you need to verify that multiple criteria are simultaneously met before flagging or acting on data.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: High-Value Cash Transaction Detection</h5>
+        <p class="scenario">Scenario: Identify transactions that are BOTH paid in cash AND exceed KES 100,000 – these may indicate control weaknesses.</p>
+        <div class="formula-box">
+            <span class="syntax">=AND(K2="Cash", F2>100000)</span>
+            <span class="result">If K2 = "Cash" and F2 = 150,000 → Result: TRUE</span>
+            <span class="result">If K2 = "Bank Transfer" and F2 = 150,000 → Result: FALSE (payment method fails)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a formula to flag transactions where:</p>
+            <ul>
+                <li>Amount > KES 150,000</li>
+                <li>Payment method is "Cash" OR "Mobile Money"</li>
+                <li>Department is "Administration"</li>
+            </ul>
+            <p><em>What would this formula return for a KES 200,000 cash transaction in Academics department?</em></p>
+            <div class="hint"><strong>Hint:</strong> You'll need to combine AND and OR functions.</div>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Verify Complete Transaction Record</h5>
+        <p class="scenario">Scenario: Check if a transaction has all required fields populated (tx_id, date, account, and debit/credit).</p>
+        <div class="formula-box">
+            <span class="syntax">=AND(A2<>"", B2<>"", C2<>"", OR(F2>0, G2>0))</span>
+            <span class="result">Returns TRUE only if all essential fields are filled AND there's either a debit or credit amount</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions in the General_Ledger are incomplete (missing either tx_id, date, or account)?</p>
+            <p><em>Which audit assertion does this test relate to?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application</h4>
+        <p>Use AND to create multi-condition tests for substantive procedures. For example, test if a transaction meets ALL criteria for a population you want to sample: specific account type AND date range AND above threshold amount.</p>
+    </div>
+</div>
+
+<!-- OR Function -->
+<div class="slide">
+    <h2>OR Function</h2>
+    
+    <div class="function-box">
+        <h4>OR(logical1, [logical2], ...)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Returns TRUE if <u>ANY ONE</u> of the conditions is TRUE. Only returns FALSE if ALL conditions are FALSE. Think of it as a flexible "at least one must pass" test.
+        </div>
+        <p><strong>When to use:</strong> When any single risk indicator should trigger a flag or action, even if other conditions aren't met.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Multi-Risk Flag Detection</h5>
+        <p class="scenario">Scenario: Flag a transaction if it has ANY of these risk indicators: flagged for review, high value, or weekend posting.</p>
+        <div class="formula-box">
+            <span class="syntax">=OR(H2="Review", F2>200000, WEEKDAY(J2,2)>5)</span>
+            <span class="result">If fraud_flag = "Review" → TRUE (regardless of other conditions)</span>
+            <span class="result">If debit = 250,000 → TRUE (high value triggers it)</span>
+            <span class="result">If posting_date is Saturday → TRUE (weekend triggers it)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a formula using OR to identify transactions that should be tested if:</p>
+            <ul>
+                <li>Account is "Salaries & Wages" OR "Consulting Fees"</li>
+                <li>Payment is "Cash" OR "Mobile Money"</li>
+                <li>Department is NOT "Administration"</li>
+            </ul>
+            <p><em>How many transactions in row 500-600 would meet these criteria?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Identify Revenue Accounts</h5>
+        <p class="scenario">Scenario: Test if an account is any type of revenue (Tuition Fees or Boarding Fees) for revenue testing procedures.</p>
+        <div class="formula-box">
+            <span class="syntax">=OR(C2="Tuition Fees", C2="Boarding Fees")</span>
+            <span class="result">If account = "Tuition Fees" → TRUE</span>
+            <span class="result">If account = "Salaries & Wages" → FALSE</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How would you modify this formula to also include "Other Income" as a revenue account?</p>
+            <p><em>What percentage of transactions in the General_Ledger are revenue transactions?</em></p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>AND vs OR - Quick Guide</h4>
+        <p><strong>AND:</strong> "I need ALL conditions to be true" → Stricter, fewer matches<br>
+        <strong>OR:</strong> "I need AT LEAST ONE condition to be true" → Broader, more matches</p>
+    </div>
+</div>
+
+<!-- NOT Function -->
+<div class="slide">
+    <h2>NOT Function</h2>
+    
+    <div class="function-box">
+        <h4>NOT(logical)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Reverses the logical value. TRUE becomes FALSE, and FALSE becomes TRUE. Essential for testing negative conditions ("is NOT equal to", "does NOT contain").
+        </div>
+        <p><strong>When to use:</strong> When you want to find the opposite of a condition, or exclude specific values from your analysis.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Find Non-Cash Transactions</h5>
+        <p class="scenario">Scenario: Identify all transactions that were NOT paid by cash (for bank reconciliation testing).</p>
+        <div class="formula-box">
+            <span class="syntax">=NOT(K2="Cash")</span>
+            <span class="result">If payment_method = "Bank Transfer" → TRUE</span>
+            <span class="result">If payment_method = "Cash" → FALSE</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a formula using NOT to find transactions that are NOT in the "Academics" department AND are NOT marked as "Normal" in fraud_flag.</p>
+            <p><em>What audit procedure would use this type of exclusion testing?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Exclude Normal Transactions</h5>
+        <p class="scenario">Scenario: Find all transactions that are NOT marked as "Normal" in the fraud_flag column.</p>
+        <div class="formula-box">
+            <span class="syntax">=NOT(H2="Normal")</span>
+            <span class="result">If fraud_flag = "Review" → TRUE (needs attention)</span>
+            <span class="result">If fraud_flag = "Normal" → FALSE (skip this one)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions are NOT marked as "Normal" in the fraud_flag column?</p>
+            <p><em>What follow-up audit work would you perform on these transactions?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application</h4>
+        <p>NOT is powerful for exception-based testing. Instead of listing what you want, list what you DON'T want: =NOT(OR(C2="Cash at Bank", C2="Tuition Fees")) finds all transactions except cash and tuition accounts.</p>
+    </div>
+</div>
+
+<!-- TRUE and FALSE Functions -->
+<div class="slide">
+    <h2>TRUE and FALSE Functions</h2>
+    
+    <div class="function-box">
+        <h4>TRUE() and FALSE()</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Return the logical values TRUE or FALSE directly. While you can type TRUE or FALSE as text, these functions ensure Excel treats them as proper logical values, not text strings.
+        </div>
+        <p><strong>When to use:</strong> When building complex formulas that require explicit logical values, or when ensuring compatibility with other functions.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Setting Default Values</h5>
+        <p class="scenario">Scenario: Create a column that defaults to FALSE for all transactions, which you'll later update.</p>
+        <div class="formula-box">
+            <span class="syntax">=FALSE()</span>
+            <span class="result">Returns: FALSE (as a logical value, not text)</span>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Force a Condition in Testing</h5>
+        <p class="scenario">Scenario: In a complex formula, force one branch to always evaluate to TRUE for testing purposes.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(TRUE(), "Always shows", "Never shows")</span>
+            <span class="result">Always returns: "Always shows"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Why would an auditor use TRUE() or FALSE() instead of just typing "TRUE" or "FALSE"?</p>
+            <p><em>What could go wrong if you type "TRUE" instead of =TRUE() in a logical test?</em></p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>TRUE vs "TRUE"</h4>
+        <p><code>TRUE</code> or <code>=TRUE()</code> → Logical value (works in calculations: TRUE = 1)<br>
+        <code>"TRUE"</code> → Text string (cannot be used in logical calculations)</p>
+    </div>
+</div>
+
+<!-- IF Function -->
+<div class="slide">
+    <h2>IF Function – The Auditor's Decision Maker</h2>
+    
+    <div class="function-box">
+        <h4>IF(logical_test, value_if_true, value_if_false)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Evaluates a condition and returns one value if TRUE, another value if FALSE. This is the most fundamental decision-making function in Excel – it allows you to create different outcomes based on your data.
+        </div>
+        <p><strong>When to use:</strong> Any time you need to categorize, flag, or label data based on conditions. Essential for audit testing, exception reporting, and data classification.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Flag High-Value Transactions for Testing</h5>
+        <p class="scenario">Scenario: The Audit_Parameters sheet shows the high-value threshold is KES 200,000. Flag all transactions exceeding this for substantive testing.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(F2>200000, "HIGH VALUE - TEST", "Standard")</span>
+            <span class="result">If debit = 229,334.67 → "HIGH VALUE - TEST"</span>
+            <span class="result">If debit = 81,228.54 → "Standard"</span>
+        </div>
+        <p><strong>Real data from workbook:</strong></p>
+        <table class="data-table">
+            <thead><tr><th>tx_id</th><th>account</th><th>debit</th><th>IF Result</th></tr></thead>
+            <tbody>
+                <tr><td>TX00148</td><td>Cash at Bank</td><td>229,334.67</td><td style="color: #e53e3e; font-weight: bold;">HIGH VALUE - TEST</td></tr>
+                <tr><td>TX00773</td><td>Maintenance & Repairs</td><td>81,228.54</td><td>Standard</td></tr>
+                <tr><td>TX00799</td><td>Salaries & Wages</td><td>244,938.09</td><td style="color: #e53e3e; font-weight: bold;">HIGH VALUE - TEST</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions in the General_Ledger would be flagged as "HIGH VALUE - TEST"?</p>
+            <p><em>Create an IF formula that flags transactions above 150,000 as "Medium Risk" and above 200,000 as "High Risk".</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Classify Transaction Types</h5>
+        <p class="scenario">Scenario: Classify each transaction as either "Income" or "Expense" based on whether it has a credit (income) or debit (expense).</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(G2>0, "Income", "Expense")</span>
+            <span class="result">If credit = 229,334.67 and debit = 0 → "Income"</span>
+            <span class="result">If debit = 81,228.54 and credit = 0 → "Expense"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">What would be the problem with this formula if both debit and credit columns are zero?</p>
+            <p><em>Modify the formula to handle three categories: "Income", "Expense", and "Zero/Adjustment".</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- Nested IF -->
+<div class="slide">
+    <h2>Nested IF – Multiple Conditions</h2>
+    
+    <p>You can nest IF statements inside each other to handle more than two outcomes. Each IF handles one condition, and the "false" result can be another IF statement.</p>
+
+    <div class="example-box">
+        <h5>Example 1: Risk Rating Based on Amount</h5>
+        <p class="scenario">Scenario: Assign risk ratings: "High Risk" for >200,000, "Medium Risk" for >100,000, "Low Risk" for others.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(F2>200000, "High Risk", IF(F2>100000, "Medium Risk", "Low Risk"))</span>
+            <span class="result">If debit = 250,000 → "High Risk"</span>
+            <span class="result">If debit = 150,000 → "Medium Risk"</span>
+            <span class="result">If debit = 50,000 → "Low Risk"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a nested IF formula that categorizes transactions as:</p>
+            <ul>
+                <li>"Material" if >200,000</li>
+                <li>"Significant" if >50,000</li>
+                <li>"Immaterial" if <=50,000</li>
+            </ul>
+            <p><em>How would you document this materiality threshold in your audit workpapers?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Department Budget Status</h5>
+        <p class="scenario">Scenario: Check if department expenses are within budget, approaching limit, or over budget.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(F2>250000, "OVER BUDGET", IF(F2>200000, "NEAR LIMIT", "Within Budget"))</span>
+            <span class="result">If debit = 298,346.33 → "OVER BUDGET"</span>
+            <span class="result">If debit = 216,859.08 → "NEAR LIMIT"</span>
+            <span class="result">If debit = 141,929.74 → "Within Budget"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">What's the limitation of using hard-coded numbers (250000, 200000) in this formula?</p>
+            <p><em>Modify the formula to reference cells from the Audit_Parameters sheet instead.</em></p>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <h4>Nesting Limit</h4>
+        <p>Excel allows up to 64 nested IFs, but more than 3-4 becomes hard to read. For many conditions, consider using IFS(), SWITCH(), or VLOOKUP instead.</p>
+    </div>
+</div>
+
+<!-- IF with AND/OR -->
+<div class="slide">
+    <h2>IF with AND/OR – Complex Audit Tests</h2>
+    
+    <p>Combining IF with AND/OR creates powerful multi-condition tests. The AND/OR goes inside the logical_test part of IF.</p>
+
+    <div class="example-box">
+        <h5>Example 1: Flag Weekend High-Value Transactions</h5>
+        <p class="scenario">Scenario: Flag transactions that are BOTH posted on weekends AND exceed KES 150,000 – this combination suggests potential control override.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(AND(WEEKDAY(J2,2)>5, F2>150000), "⚠️ WEEKEND HIGH-VALUE", "OK")</span>
+            <span class="result">If posting_date = Saturday AND debit = 200,000 → "⚠️ WEEKEND HIGH-VALUE"</span>
+            <span class="result">If posting_date = Monday AND debit = 200,000 → "OK" (weekday)</span>
+            <span class="result">If posting_date = Saturday AND debit = 50,000 → "OK" (low value)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions meet BOTH weekend posting AND high-value (>150,000) criteria?</p>
+            <p><em>What control weakness might this indicate, and what follow-up procedures would you perform?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Flag Any Risk Indicator</h5>
+        <p class="scenario">Scenario: Flag if ANY risk indicator is present: flagged for review, very high value (>250K), or cash payment over 100K.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(OR(H2="Review", F2>250000, AND(K2="Cash", F2>100000)), "🔴 INVESTIGATE", "Clear")</span>
+            <span class="result">If fraud_flag = "Review" → "🔴 INVESTIGATE"</span>
+            <span class="result">If debit = 300,000 → "🔴 INVESTIGATE"</span>
+            <span class="result">If payment = "Cash" AND debit = 150,000 → "🔴 INVESTIGATE"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a risk scoring formula that assigns points:</p>
+            <ul>
+                <li>2 points if fraud_flag = "Review"</li>
+                <li>1 point if >200,000</li>
+                <li>1 point if weekend posting</li>
+                <li>Flag "HIGH RISK" if total >= 3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Real Audit Application</h4>
+        <p>Use these combined tests to create audit workpapers that automatically flag items meeting your testing criteria. For example: =IF(AND(C2="Salaries & Wages", E2="Administration", F2>AVERAGEIF(C:C,"Salaries & Wages",F:F)*1.5), "Above 150% of average - verify", "OK")</p>
+    </div>
+</div>
+
+<!-- IFERROR Function -->
+<div class="slide">
+    <h2>IFERROR Function – Graceful Error Handling</h2>
+    
+    <div class="function-box">
+        <h4>IFERROR(value, value_if_error)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Catches any error (#DIV/0!, #N/A, #VALUE!, #REF!, etc.) and returns a custom value instead. This prevents ugly error messages from appearing in your audit workpapers and allows you to handle missing data gracefully.
+        </div>
+        <p><strong>When to use:</strong> Around any formula that might produce an error – especially VLOOKUP, division calculations, and INDEX/MATCH lookups.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Safe Division for Ratio Analysis</h5>
+        <p class="scenario">Scenario: Calculate the debit-to-credit ratio. When credit is 0, division returns #DIV/0! error.</p>
+        <div class="formula-box">
+            <span class="syntax">=IFERROR(F2/G2, "N/A - No Credit")</span>
+            <span class="result">If debit = 100,000 and credit = 50,000 → 2</span>
+            <span class="result">If debit = 100,000 and credit = 0 → "N/A - No Credit" (instead of #DIV/0!)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">What would be a better error message than "N/A - No Credit" for audit workpapers?</p>
+            <p><em>Create a formula that shows "INFINITE" when credit is 0, and the actual ratio otherwise.</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Safe Vendor Lookup</h5>
+        <p class="scenario">Scenario: Look up vendor type from Vendors sheet. If vendor_name doesn't exist in the list, VLOOKUP returns #N/A.</p>
+        <div class="formula-box">
+            <span class="syntax">=IFERROR(VLOOKUP(M2, Vendors!$B$2:$C$6, 2, FALSE), "⚠️ VENDOR NOT IN MASTER LIST")</span>
+            <span class="result">If vendor = "Kenya Power Ltd" → "Utilities"</span>
+            <span class="result">If vendor = "Unknown Supplier" → "⚠️ VENDOR NOT IN MASTER LIST"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions in the General_Ledger have vendors NOT in the master list?</p>
+            <p><em>What control weakness does this indicate, and which audit assertion is affected?</em></p>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <h4>Caution: Don't Hide Real Problems</h4>
+        <p>IFERROR can mask legitimate data issues. Use it thoughtfully – make sure your error message helps identify the problem (like "VENDOR NOT IN MASTER LIST") rather than hiding it (like just showing blank).</p>
+    </div>
+</div>
+
+<!-- IS Functions -->
+<div class="slide">
+    <h2>IS Functions – Data Quality Testing</h2>
+    
+    <div class="function-box">
+        <h4>ISBLANK, ISNUMBER, ISTEXT, ISERROR, ISNA</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Test what TYPE of data is in a cell. These functions return TRUE or FALSE based on the cell's contents, allowing you to validate data quality and completeness.
+        </div>
+        <p><strong>When to use:</strong> Data quality assessments, completeness testing, identifying missing or incorrect data types.</p>
+    </div>
+
+    <div class="formula-grid">
+        <div class="formula-card">
+            <h4>ISBLANK(value)</h4>
+            <p class="purpose">TRUE if cell is empty</p>
+            <code>=ISBLANK(M2)</code>
+            <p>Check if vendor_name is missing</p>
+        </div>
+        <div class="formula-card">
+            <h4>ISNUMBER(value)</h4>
+            <p class="purpose">TRUE if cell contains a number</p>
+            <code>=ISNUMBER(F2)</code>
+            <p>Verify debit is numeric</p>
+        </div>
+        <div class="formula-card">
+            <h4>ISTEXT(value)</h4>
+            <p class="purpose">TRUE if cell contains text</p>
+            <code>=ISTEXT(C2)</code>
+            <p>Verify account is text</p>
+        </div>
+        <div class="formula-card">
+            <h4>ISERROR(value)</h4>
+            <p class="purpose">TRUE if cell contains any error</p>
+            <code>=ISERROR(F2/G2)</code>
+            <p>Check if calculation errors</p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Completeness Test for Required Fields</h5>
+        <p class="scenario">Scenario: Flag any transaction missing critical audit trail information (tx_id, date, or account).</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(OR(ISBLANK(A2), ISBLANK(B2), ISBLANK(C2)), "❌ INCOMPLETE RECORD", "✓ Complete")</span>
+            <span class="result">If any of tx_id, date, or account is empty → "❌ INCOMPLETE RECORD"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions have incomplete records (missing tx_id, date, or account)?</p>
+            <p><em>Which audit assertion is primarily affected by incomplete records?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Identify Transactions Missing Vendor for Expense Items</h5>
+        <p class="scenario">Scenario: For expense accounts (debit > 0), vendor_name should be populated. Flag where it's missing.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(AND(F2>0, ISBLANK(M2)), "⚠️ MISSING VENDOR", "OK")</span>
+            <span class="result">If debit = 81,228 and vendor_name is empty → "⚠️ MISSING VENDOR"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many expense transactions (debit > 0) are missing vendor information?</p>
+            <p><em>What additional check could you add to this formula to exclude internal transfers?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application: Data Completeness Summary</h4>
+        <p>Create a completeness summary: =COUNTIF(M:M,"")&" of "&COUNTA(A:A)-1&" transactions missing vendor name" → "847 of 2000 transactions missing vendor name"</p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 11: MATH FORMULAS ==================== -->
+<div class="slide section-slide" id="math">
+    <span class="section-number">11</span>
+    <h2>Math Formulas</h2>
+    <p>INT, MOD, RAND, RANDBETWEEN, ROUND, SUM, SUMIF, SUMIFS, SUMPRODUCT</p>
+</div>
+
+<div class="slide">
+    <h2>Introduction to Math Formulas</h2>
+    <p>Math formulas perform calculations on your data – from simple totals to complex conditional aggregations. For auditors, these are essential for footing schedules, testing account balances, performing analytical procedures, and selecting audit samples.</p>
+    
+    <div class="workbook-ref">
+        <strong>📁 Primary Sheet:</strong> General_Ledger (2,000 transactions)
+        <div class="columns"><strong>Key Columns Used:</strong> F (debit), G (credit), C (account), E (department), B (date), K (payment_method)</div>
+    </div>
+</div>
+
+<!-- SUM Function -->
+<div class="slide">
+    <h2>SUM Function – Basic Totaling</h2>
+    
+    <div class="function-box">
+        <h4>SUM(number1, [number2], ...)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Adds all numbers in a range or list. This is the most fundamental aggregation function – the "footing" that auditors do manually, automated.
+        </div>
+        <p><strong>When to use:</strong> Calculate totals for any numeric column – total debits, total credits, total expenses by account, etc.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Total All Debits in General Ledger</h5>
+        <p class="scenario">Scenario: Calculate the total of all debit transactions to verify against the trial balance.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUM(F2:F2001)</span>
+            <span class="result">Adds all 2,000 debit values in column F</span>
+            <span class="result">This should equal the total debits on your trial balance</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate the total of all credits in the General Ledger.</p>
+            <p><em>What is the difference between total debits and total credits? What does this tell you about the data quality?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Verify Debits Equal Credits (Trial Balance Test)</h5>
+        <p class="scenario">Scenario: The fundamental accounting equation – total debits should equal total credits.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUM(F2:F2001) - SUM(G2:G2001)</span>
+            <span class="result">Result should be 0 (or very close due to rounding)</span>
+            <span class="result">If not zero, there's an imbalance to investigate!</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Is the General_Ledger balanced (debits = credits)?</p>
+            <p><em>Create a formula that shows "BALANCED" if difference < 100, "IMBALANCE" otherwise.</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application</h4>
+        <p>Use SUM to "foot" columns and "cross-foot" rows. Always verify your Excel totals against source system totals to confirm data completeness.</p>
+    </div>
+</div>
+
+<!-- SUMIF Function -->
+<div class="slide">
+    <h2>SUMIF Function – Conditional Totaling</h2>
+    
+    <div class="function-box">
+        <h4>SUMIF(range, criteria, [sum_range])</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Adds values only when a single condition is met. This allows you to total subsets of your data – like all expenses for one account, or all transactions from one department.
+        </div>
+        <p><strong>Parameters:</strong><br>
+        • <strong>range:</strong> The cells to check against your criteria<br>
+        • <strong>criteria:</strong> What to look for (text, number, or expression)<br>
+        • <strong>sum_range:</strong> The cells to actually add up (optional – if omitted, sums the range itself)</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Total Salary Expenses</h5>
+        <p class="scenario">Scenario: Calculate total debits for the "Salaries & Wages" account for payroll testing.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMIF(C:C, "Salaries & Wages", F:F)</span>
+            <span class="result">Checks each cell in column C (account)</span>
+            <span class="result">Where it equals "Salaries & Wages"...</span>
+            <span class="result">...adds the corresponding value from column F (debit)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate the total credit for "Tuition Fees" account.</p>
+            <p><em>What percentage of total credits does this represent?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Total High-Value Transactions</h5>
+        <p class="scenario">Scenario: Sum all transactions above KES 200,000 for materiality testing.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMIF(F:F, ">200000")</span>
+            <span class="result">When sum_range is omitted, it sums the criteria range itself</span>
+            <span class="result">Returns total of all debits exceeding 200,000</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate the total value of transactions between 100,000 and 200,000.</p>
+            <p><em>Hint: You'll need two SUMIF formulas and subtraction.</em></p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>Criteria Syntax</h4>
+        <p><code>"Salaries & Wages"</code> = exact text match<br>
+        <code>">200000"</code> = greater than (note: operator in quotes)<br>
+        <code>"<>"&A1</code> = not equal to cell A1 value<br>
+        <code>"*Power*"</code> = contains "Power" (wildcard)</p>
+    </div>
+</div>
+
+<!-- SUMIFS Function -->
+<div class="slide">
+    <h2>SUMIFS Function – Multiple Conditions</h2>
+    
+    <div class="function-box">
+        <h4>SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Adds values when MULTIPLE conditions are ALL met. This is the workhorse for audit analytics – allowing you to slice data by account AND department AND date range AND any other criteria simultaneously.
+        </div>
+        <p><strong>Key Difference from SUMIF:</strong> Sum_range comes FIRST in SUMIFS (not last like in SUMIF).</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Salary Expenses for Administration Department Only</h5>
+        <p class="scenario">Scenario: Calculate total salary expenses specifically for Administration (not all departments).</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMIFS(F:F, C:C, "Salaries & Wages", E:E, "Administration")</span>
+            <span class="result">Sum column F WHERE:</span>
+            <span class="result">• Column C = "Salaries & Wages" AND</span>
+            <span class="result">• Column E = "Administration"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate total "Teaching Materials" expenses for "Academics" department only.</p>
+            <p><em>What percentage of total teaching materials expenses does this represent?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Q1 2024 Cash Transactions</h5>
+        <p class="scenario">Scenario: Total all cash payment transactions from January through March 2024.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMIFS(F:F, K:K, "Cash", B:B, ">=1/1/2024", B:B, "<=3/31/2024")</span>
+            <span class="result">Sum column F WHERE:</span>
+            <span class="result">• Column K = "Cash" AND</span>
+            <span class="result">• Column B >= January 1, 2024 AND</span>
+            <span class="result">• Column B <= March 31, 2024</span>
+        </div>
+        <p><strong>Better approach using DATE function:</strong></p>
+        <div class="formula-box">
+            <span class="syntax">=SUMIFS(F:F, K:K, "Cash", B:B, ">="&DATE(2024,1,1), B:B, "<="&DATE(2024,3,31))</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate total "Bank Transfer" payments for "Maintenance" expenses in Q2 2024 (April-June).</p>
+            <p><em>Create a formula that references date cells instead of hard-coding dates.</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- SUMIFS Advanced Examples -->
+<div class="slide">
+    <h2>SUMIFS – Advanced Audit Examples</h2>
+    
+    <table class="data-table">
+        <thead><tr><th>Analysis Need</th><th>SUMIFS Formula</th></tr></thead>
+        <tbody>
+            <tr>
+                <td>Teaching Materials for Academics Dept</td>
+                <td><code>=SUMIFS(F:F, E:E, "Academics", C:C, "Teaching Materials")</code></td>
+            </tr>
+            <tr>
+                <td>Tuition Income via Mobile Money</td>
+                <td><code>=SUMIFS(G:G, C:C, "Tuition Fees", K:K, "Mobile Money")</code></td>
+            </tr>
+            <tr>
+                <td>Flagged Transactions Over 150K</td>
+                <td><code>=SUMIFS(F:F, H:H, "Review", F:F, ">150000")</code></td>
+            </tr>
+            <tr>
+                <td>July 2024 Maintenance Expenses</td>
+                <td><code>=SUMIFS(F:F, E:E, "Maintenance", B:B, ">="&DATE(2024,7,1), B:B, "<="&DATE(2024,7,31))</code></td>
+            </tr>
+            <tr>
+                <td>Non-Cash Expenses for Boarding</td>
+                <td><code>=SUMIFS(F:F, E:E, "Boarding", K:K, "<>Cash")</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create a SUMIFS formula to calculate:</p>
+        <ul>
+            <li>Total "Consulting Fees" expenses</li>
+            <li>For "Administration" department only</li>
+            <li>Paid via "Bank Transfer"</li>
+            <li>In the second half of 2024 (July-December)</li>
+        </ul>
+        <p><em>What control objective would this analysis support?</em></p>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application: Account Reconciliation</h4>
+        <p>Use SUMIFS to create a departmental expense breakdown that ties to your trial balance:</p>
+        <div class="formula-box">
+            <span class="example">Administration Salaries: =SUMIFS(F:F, C:C, "Salaries & Wages", E:E, "Administration")</span>
+            <span class="example">Academics Salaries: =SUMIFS(F:F, C:C, "Salaries & Wages", E:E, "Academics")</span>
+            <span class="example">Total Salaries: =SUMIF(C:C, "Salaries & Wages", F:F) ← This should equal sum of above</span>
+        </div>
+    </div>
+</div>
+
+<!-- SUMPRODUCT Function -->
+<div class="slide">
+    <h2>SUMPRODUCT Function – The Swiss Army Knife</h2>
+    
+    <div class="function-box">
+        <h4>SUMPRODUCT(array1, [array2], [array3], ...)</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Multiplies corresponding elements in arrays, then sums the results. When used with conditions (TRUE=1, FALSE=0), it becomes an incredibly powerful tool for complex calculations that SUMIFS can't handle.
+        </div>
+        <p><strong>When to use:</strong> Complex multi-condition calculations, weighted averages, counting with multiple criteria, or when you need more flexibility than SUMIFS provides.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Count Transactions Meeting Multiple Criteria</h5>
+        <p class="scenario">Scenario: Count how many transactions are flagged "Review" – COUNTIFS could do this, but SUMPRODUCT shows the technique.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMPRODUCT((H2:H2001="Review")*1)</span>
+            <span class="result">How it works:</span>
+            <span class="result">• (H2:H2001="Review") creates array of TRUE/FALSE</span>
+            <span class="result">• Multiplying by 1 converts TRUE→1, FALSE→0</span>
+            <span class="result">• SUMPRODUCT adds them: count of matches</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Use SUMPRODUCT to count transactions that are:</p>
+            <ul>
+                <li>Account = "Salaries & Wages"</li>
+                <li>Department = "Academics"</li>
+                <li>Amount > 100,000</li>
+            </ul>
+            <p><em>How does this compare to using COUNTIFS?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Sum High-Value Boarding Salaries</h5>
+        <p class="scenario">Scenario: Sum salary expenses for Boarding department where individual transactions exceed KES 100,000.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUMPRODUCT((C2:C2001="Salaries & Wages")*(E2:E2001="Boarding")*(F2:F2001>100000)*F2:F2001)</span>
+            <span class="result">• First three parts create 1/0 arrays for each condition</span>
+            <span class="result">• Multiplying them together: 1 only where ALL are true</span>
+            <span class="result">• Multiplying by F2:F2001 gives amounts only for matching rows</span>
+            <span class="result">• SUMPRODUCT adds these amounts</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Use SUMPRODUCT to calculate the average transaction amount for:</p>
+            <ul>
+                <li>Payment method = "Cash"</li>
+                <li>Weekend postings (WEEKDAY(J2,2)>5)</li>
+            </ul>
+            <p><em>Hint: You'll need two SUMPRODUCT formulas (sum and count).</em></p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>SUMPRODUCT vs SUMIFS</h4>
+        <p><strong>Use SUMIFS when:</strong> Simple AND conditions between different columns<br>
+        <strong>Use SUMPRODUCT when:</strong> OR conditions, comparing values within same row, or complex logic SUMIFS can't handle</p>
+    </div>
+</div>
+
+<!-- ROUND, INT, MOD -->
+<div class="slide">
+    <h2>ROUND, INT, MOD – Number Precision</h2>
+    
+    <div class="function-box">
+        <h4>ROUND(number, num_digits) | INT(number) | MOD(number, divisor)</h4>
+        <div class="purpose">
+            <strong>ROUND:</strong> Rounds a number to specified decimal places (positive) or significant digits (negative)<br>
+            <strong>INT:</strong> Rounds DOWN to the nearest integer (removes decimal portion)<br>
+            <strong>MOD:</strong> Returns the remainder after division – useful for pattern detection
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: ROUND for Financial Reporting</h5>
+        <p class="scenario">Scenario: Round transaction amounts for summary reporting.</p>
+        <div class="formula-box">
+            <span class="syntax">=ROUND(229334.67, 2) → 229334.67 (2 decimal places)</span>
+            <span class="syntax">=ROUND(229334.67, 0) → 229335 (nearest whole number)</span>
+            <span class="syntax">=ROUND(229334.67, -3) → 229000 (nearest thousand)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Round all debit amounts to the nearest 100 and sum them.</p>
+            <p><em>What's the difference between this total and the actual total? Would this be material?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: INT and MOD for Benford's Law Analysis</h5>
+        <p class="scenario">Scenario: Extract the first digit of transaction amounts for fraud detection using Benford's Law.</p>
+        <div class="formula-box">
+            <span class="syntax">=INT(F2/10^INT(LOG10(F2)))</span>
+            <span class="result">If F2 = 229334.67 → First digit = 2</span>
+            <span class="result">If F2 = 81228.54 → First digit = 8</span>
+        </div>
+        <p><strong>MOD for highlighting patterns:</strong></p>
+        <div class="formula-box">
+            <span class="syntax">=MOD(ROW(), 2) → Returns 0 for even rows, 1 for odd rows</span>
+            <span class="syntax">=MOD(F2, 1000) → Returns remainder when divided by 1000</span>
+            <span class="result">Useful for detecting round-number transactions (if MOD=0, it's a round thousand)</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">How many transactions have amounts that are exact multiples of 1,000 (MOD(F2,1000)=0)?</p>
+            <p><em>What might this pattern indicate about the transactions?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Benford's Law Application</h4>
+        <p>Natural financial data follows Benford's Law: ~30% start with 1, ~18% with 2, etc. If your transaction data doesn't follow this pattern, it may indicate manipulation. Use INT formula above to extract first digits, then COUNTIF to analyze distribution.</p>
+    </div>
+</div>
+
+<!-- RAND and RANDBETWEEN -->
+<div class="slide">
+    <h2>RAND & RANDBETWEEN – Audit Sampling</h2>
+    
+    <div class="function-box">
+        <h4>RAND() | RANDBETWEEN(bottom, top)</h4>
+        <div class="purpose">
+            <strong>RAND():</strong> Returns a random decimal between 0 (inclusive) and 1 (exclusive). Changes every time the worksheet recalculates.<br>
+            <strong>RANDBETWEEN(bottom, top):</strong> Returns a random integer between bottom and top (both inclusive).
+        </div>
+        <p><strong>When to use:</strong> Selecting random samples for audit testing, creating random sort orders, assigning random audit priorities.</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Random Sample Selection</h5>
+        <p class="scenario">Scenario: Select a random sample of 50 transactions from the 2,000 in General_Ledger for detailed testing.</p>
+        <div class="formula-box">
+            <span class="syntax">Step 1: Add column with =RAND() next to each transaction</span>
+            <span class="syntax">Step 2: Copy the column and Paste Values (to freeze the random numbers)</span>
+            <span class="syntax">Step 3: Sort entire dataset by the random column</span>
+            <span class="syntax">Step 4: Select the first 50 rows as your sample</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Select a systematic sample (every 40th transaction) from the General_Ledger.</p>
+            <p><em>What are the advantages and disadvantages of systematic vs random sampling?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Select Specific Random Transaction Numbers</h5>
+        <p class="scenario">Scenario: Generate 5 random row numbers to select specific transactions for testing.</p>
+        <div class="formula-box">
+            <span class="syntax">=RANDBETWEEN(2, 2001)</span>
+            <span class="result">Returns random integer between 2 and 2001 (row numbers with data)</span>
+            <span class="result">Example results: 847, 1523, 234, 1891, 456</span>
+        </div>
+        <p><strong>Get the actual tx_id for that row:</strong></p>
+        <div class="formula-box">
+            <span class="syntax">=INDEX(A:A, RANDBETWEEN(2, 2001))</span>
+            <span class="result">Returns actual tx_id like "TX00847"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Select 10 random high-value transactions (>150,000) for testing.</p>
+            <p><em>How would you ensure your sample is truly random and auditable?</em></p>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <h4>Critical: Freeze Your Random Numbers!</h4>
+        <p>RAND and RANDBETWEEN recalculate every time anything changes in your workbook. IMMEDIATELY after generating random numbers, copy the cells and Paste Special → Values. Otherwise, your sample will change and you'll lose your audit trail!</p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 12: LOOKUP AND REFERENCE ==================== -->
+<div class="slide section-slide" id="lookup">
+    <span class="section-number">12</span>
+    <h2>Lookup and Reference Formulas</h2>
+    <p>VLOOKUP, HLOOKUP, XLOOKUP, INDEX, MATCH, OFFSET, INDIRECT, ROW, ROWS, COLUMN, COLUMNS</p>
+</div>
+
+<div class="slide">
+    <h2>Introduction to Lookup Functions</h2>
+    <p>Lookup functions retrieve data from tables based on a search value. They're essential for auditors who need to cross-reference data between sheets – like verifying vendor details, matching account codes to names, or pulling department information.</p>
+    
+    <div class="workbook-ref">
+        <strong>📁 Sheets Used for Cross-Referencing:</strong>
+        <div class="columns">
+            • <strong>General_Ledger:</strong> Main transaction data (columns: account, department, vendor_name, etc.)<br>
+            • <strong>Chart_of_Accounts:</strong> account_code, account_name, account_type<br>
+            • <strong>Departments:</strong> dept_code, department<br>
+            • <strong>Vendors:</strong> vendor_id, vendor_name, vendor_type
+        </div>
+    </div>
+</div>
+
+<!-- VLOOKUP Function -->
+<div class="slide">
+    <h2>VLOOKUP Function – Vertical Lookup</h2>
+    
+    <div class="function-box">
+        <h4>VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Searches for a value in the FIRST column of a table and returns a value from a specified column in the same row. The "V" stands for Vertical – it searches down a column.
+        </div>
+        <p><strong>Parameters:</strong><br>
+        • <strong>lookup_value:</strong> What you're searching for<br>
+        • <strong>table_array:</strong> The table to search (lookup column must be FIRST)<br>
+        • <strong>col_index_num:</strong> Which column to return (1 = first column)<br>
+        • <strong>range_lookup:</strong> FALSE for exact match (ALWAYS use FALSE for audit work)</p>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Get Account Type from Chart of Accounts</h5>
+        <p class="scenario">Scenario: For each transaction in General_Ledger, determine if the account is an Asset, Liability, Income, or Expense.</p>
+        <div class="formula-box">
+            <span class="syntax">=VLOOKUP(C2, Chart_of_Accounts!$B$2:$C$9, 2, FALSE)</span>
+            <span class="result">• C2 = "Cash at Bank" (account name from General_Ledger)</span>
+            <span class="result">• Searches Chart_of_Accounts column B for "Cash at Bank"</span>
+            <span class="result">• Returns column 2 (account_type) = "Asset"</span>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Account (C2)</th><th>VLOOKUP Result</th></tr></thead>
+            <tbody>
+                <tr><td>Cash at Bank</td><td>Asset</td></tr>
+                <tr><td>Tuition Fees</td><td>Income</td></tr>
+                <tr><td>Salaries & Wages</td><td>Expense</td></tr>
+                <tr><td>Accounts Payable</td><td>Liability</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Use VLOOKUP to get the account_code (column A) for each transaction.</p>
+            <p><em>What happens when you try to VLOOKUP "Office Supplies" which doesn't exist in the Chart_of_Accounts?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Get Vendor Type</h5>
+        <p class="scenario">Scenario: Look up the vendor type (Utilities, Supplies, etc.) for each transaction's vendor.</p>
+        <div class="formula-box">
+            <span class="syntax">=VLOOKUP(M2, Vendors!$B$2:$C$6, 2, FALSE)</span>
+            <span class="result">• M2 = "Kenya Power Ltd" (vendor_name from General_Ledger)</span>
+            <span class="result">• Searches Vendors column B for this name</span>
+            <span class="result">• Returns column 2 (vendor_type) = "Utilities"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">What would a #N/A error in this VLOOKUP indicate about the vendor data?</p>
+            <p><em>How many transactions have vendors not in the master vendor list?</em></p>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <h4>Always Use FALSE for Exact Match</h4>
+        <p>Using TRUE or omitting the 4th parameter causes VLOOKUP to find "approximate" matches – this can return WRONG data silently. In audit work, ALWAYS use FALSE.</p>
+    </div>
+</div>
+
+<!-- XLOOKUP Function -->
+<div class="slide">
+    <h2>XLOOKUP – The Modern Auditor's Lookup</h2>
+    
+    <div class="workbook-ref">
+        <strong>📁 Using Sheets:</strong> General_Ledger ↔ Chart_of_Accounts ↔ Vendors
+    </div>
+
+    <div class="formula-box">
+        <span class="syntax">=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])</span>
+    </div>
+
+    <h3>Audit Example: Get Account Type (Safer than VLOOKUP)</h3>
+    <div class="formula-box">
+        <span class="example">=XLOOKUP(C2, Chart_of_Accounts!B:B, Chart_of_Accounts!C:C, "INVALID ACCOUNT")</span>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Purpose</h4>
+        <p>Ensures every transaction is posted to a valid account. Invalid mappings indicate control weaknesses in chart-of-accounts enforcement.</p>
+    </div>
+
+    <h3>Vendor Risk Classification</h3>
+    <div class="formula-box">
+        <span class="example">=XLOOKUP(M2, Vendors!B:B, Vendors!D:D, "UNKNOWN VENDOR")</span>
+    </div>
+
+    <div class="tip-box">
+        <h4>Why Auditors Prefer XLOOKUP</h4>
+        <ul>
+            <li>No column numbers → safer when sheets change</li>
+            <li>Looks left or right</li>
+            <li>Built-in error handling</li>
+            <li>More readable for audit review</li>
+        </ul>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Convert the VLOOKUP examples to XLOOKUP with proper error handling.</p>
+        <p><em>What additional audit insight could you get from the "INVALID ACCOUNT" results?</em></p>
+    </div>
+</div>
+
+<!-- Lookup Failures as Audit Findings -->
+<div class="slide">
+    <h2>Lookup Failures as Audit Findings</h2>
+
+    <h3>Detect Invalid Master Data Usage</h3>
+    <div class="formula-box">
+        <span class="example">=IFERROR(XLOOKUP(C2, Chart_of_Accounts!B:B, Chart_of_Accounts!C:C), "❌ INVALID ACCOUNT")</span>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>tx_id</th>
+                <th>account</th>
+                <th>Lookup Result</th>
+                <th>Audit Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TX01921</td>
+                <td>Office Snacks</td>
+                <td style="color:#e53e3e;">❌ INVALID ACCOUNT</td>
+                <td>Posting bypassed Chart of Accounts</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="audit-scenario">
+        <h4>Audit Assertion Impact</h4>
+        <p><strong>Classification & Accuracy:</strong> Transactions posted to invalid accounts may distort financial statements.</p>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Count how many transactions have invalid account mappings.</p>
+        <p><em>What internal control recommendation would you make based on this finding?</em></p>
+    </div>
+</div>
+
+<!-- INDEX and MATCH -->
+<div class="slide">
+    <h2>INDEX & MATCH – The Superior Combination</h2>
+    
+    <div class="function-box">
+        <h4>INDEX(array, row_num, [col_num]) + MATCH(lookup_value, lookup_array, [match_type])</h4>
+        <div class="purpose">
+            <strong>INDEX:</strong> Returns a value from a specific position in a range (row and/or column number)<br>
+            <strong>MATCH:</strong> Finds the position of a value in a range (returns row or column number)<br>
+            <strong>Combined:</strong> MATCH finds WHERE the value is, INDEX retrieves WHAT is at that location
+        </div>
+    </div>
+
+    <div class="two-col">
+        <div>
+            <h4>VLOOKUP Limitations</h4>
+            <ul>
+                <li>Can only look RIGHT (return columns to the right of search column)</li>
+                <li>Column numbers break if you insert columns</li>
+                <li>Slower on large datasets</li>
+                <li>Can only search the first column</li>
+            </ul>
+        </div>
+        <div>
+            <h4>INDEX/MATCH Advantages</h4>
+            <ul>
+                <li>Can look in ANY direction (left, right, up, down)</li>
+                <li>Column references don't break</li>
+                <li>Faster on large datasets</li>
+                <li>Can search any column</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: Look LEFT – Get Account Code from Name</h5>
+        <p class="scenario">Scenario: Get the account_code (column A) when you have the account_name (column B). VLOOKUP can't do this because code is LEFT of name!</p>
+        <div class="formula-box">
+            <span class="syntax">=INDEX(Chart_of_Accounts!$A$2:$A$9, MATCH(C2, Chart_of_Accounts!$B$2:$B$9, 0))</span>
+            <span class="result">• MATCH finds "Cash at Bank" in column B, returns position 1</span>
+            <span class="result">• INDEX returns the 1st value from column A = "1001"</span>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Account Name (C2)</th><th>INDEX/MATCH Result (Code)</th></tr></thead>
+            <tbody>
+                <tr><td>Cash at Bank</td><td>1001</td></tr>
+                <tr><td>Tuition Fees</td><td>4001</td></tr>
+                <tr><td>Salaries & Wages</td><td>5001</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Use INDEX/MATCH to get department_code for each transaction.</p>
+            <p><em>Compare this approach to using XLOOKUP. Which is better for audit workpapers?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: Get Department Code from Name</h5>
+        <p class="scenario">Scenario: Convert department names in General_Ledger to department codes for system matching.</p>
+        <div class="formula-box">
+            <span class="syntax">=INDEX(Departments!$A$2:$A$5, MATCH(E2, Departments!$B$2:$B$5, 0))</span>
+            <span class="result">• E2 = "Administration"</span>
+            <span class="result">• MATCH finds position in department column = 1</span>
+            <span class="result">• INDEX returns dept_code = "ADM"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">What would happen if a department name in General_Ledger doesn't exist in Departments sheet?</p>
+            <p><em>Modify the formula to show "UNKNOWN DEPT" for missing values.</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- Two-Way Lookup -->
+<div class="slide">
+    <h2>Two-Way Lookup with INDEX/MATCH</h2>
+    
+    <p>A two-way lookup finds a value at the intersection of a specific row AND column – like finding a cell in a matrix where you know both the row header and column header.</p>
+
+    <div class="formula-box">
+        <span class="syntax">=INDEX(data_range, MATCH(row_lookup, row_headers, 0), MATCH(col_lookup, col_headers, 0))</span>
+    </div>
+
+    <div class="example-box">
+        <h5>Example: Department × Account Expense Matrix</h5>
+        <p class="scenario">Scenario: You have a summary table with departments as rows and accounts as columns. Find the expense for "Academics" department and "Teaching Materials" account.</p>
+        
+        <p><strong>Imagine this summary table (created from pivot or SUMIFS):</strong></p>
+        <table class="data-table">
+            <thead><tr><th></th><th>Salaries</th><th>Utilities</th><th>Teaching Materials</th><th>Maintenance</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Administration</strong></td><td>1,245,000</td><td>450,000</td><td>125,000</td><td>320,000</td></tr>
+                <tr><td><strong>Academics</strong></td><td>2,150,000</td><td>180,000</td><td style="background: #fefcbf;">890,000</td><td>95,000</td></tr>
+                <tr><td><strong>Boarding</strong></td><td>980,000</td><td>520,000</td><td>45,000</td><td>280,000</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="formula-box">
+            <span class="syntax">=INDEX(B2:E4, MATCH("Academics", A2:A4, 0), MATCH("Teaching Materials", B1:E1, 0))</span>
+            <span class="result">• MATCH("Academics"...) returns 2 (second row)</span>
+            <span class="result">• MATCH("Teaching Materials"...) returns 3 (third column)</span>
+            <span class="result">• INDEX returns value at row 2, column 3 = 890,000</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a two-way lookup to find "Boarding" department "Utilities" expense.</p>
+            <p><em>What audit analysis could you perform using this technique?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Application</h4>
+        <p>Use two-way lookups for budget vs. actual comparisons, period-over-period analysis, or any time you have a matrix of values and need to find specific intersections.</p>
+    </div>
+</div>
+
+<!-- OFFSET and INDIRECT -->
+<div class="slide">
+    <h2>OFFSET & INDIRECT – Dynamic References</h2>
+    
+    <div class="function-box">
+        <h4>OFFSET(reference, rows, cols, [height], [width])</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Creates a dynamic reference that moves from a starting point. Returns a reference to a range that is a specified number of rows and columns from a starting cell.
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 1: OFFSET for Dynamic Range</h5>
+        <p class="scenario">Scenario: Sum the last 10 transactions in column F, regardless of how many total rows there are.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUM(OFFSET(F1, COUNTA(F:F)-10, 0, 10, 1))</span>
+            <span class="result">• Starts at F1</span>
+            <span class="result">• Moves down to 10 rows before the last entry</span>
+            <span class="result">• Creates a range 10 rows tall, 1 column wide</span>
+            <span class="result">• Sums those last 10 values</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a formula to average the last 20 debit transactions.</p>
+            <p><em>How could this be useful for audit analytical procedures?</em></p>
+        </div>
+    </div>
+
+    <div class="function-box">
+        <h4>INDIRECT(ref_text, [a1])</h4>
+        <div class="purpose">
+            <strong>Purpose:</strong> Converts a text string into an actual cell reference. Allows you to build cell references dynamically from text.
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example 2: INDIRECT for Sheet Reference</h5>
+        <p class="scenario">Scenario: Pull data from a sheet whose name is stored in a cell. If A1 contains "General_Ledger", get the sum of column F from that sheet.</p>
+        <div class="formula-box">
+            <span class="syntax">=SUM(INDIRECT(A1&"!F:F"))</span>
+            <span class="result">• A1 = "General_Ledger"</span>
+            <span class="result">• Formula becomes =SUM(General_Ledger!F:F)</span>
+            <span class="result">• Returns sum of all debits</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a summary sheet that can pull totals from any department sheet based on a dropdown selection.</p>
+            <p><em>What are the audit documentation requirements for dynamic formulas like this?</em></p>
+        </div>
+    </div>
+
+    <h3>ROW, ROWS, COLUMN, COLUMNS</h3>
+    <div class="formula-grid">
+        <div class="formula-card">
+            <h4>ROW([reference])</h4>
+            <p class="purpose">Returns the row number of a reference</p>
+            <code>=ROW(A5)</code> → 5<br>
+            <code>=ROW()</code> → Current row number
+        </div>
+        <div class="formula-card">
+            <h4>COLUMN([reference])</h4>
+            <p class="purpose">Returns the column number</p>
+            <code>=COLUMN(C1)</code> → 3<br>
+            <code>=COLUMN()</code> → Current column
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>Auto-Numbering with ROW()</h4>
+        <p>Use <code>=ROW()-1</code> in row 2 to create auto-incrementing numbers (1, 2, 3...) that automatically adjust if you insert or delete rows.</p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 13: STATISTICAL FORMULAS ==================== -->
+<div class="slide section-slide">
+    <span class="section-number">13</span>
+    <h2>Statistical Formulas</h2>
+    <p>AVERAGE, MEDIAN, MODE, STDEV, COUNT, COUNTA, COUNTIF, COUNTIFS</p>
+</div>
+
+<div class="slide">
+    <h2>Statistical Analysis for Auditors</h2>
+    
+    <div class="workbook-ref">
+        <strong>📁 Primary Sheet:</strong> General_Ledger
+        <div class="columns"><strong>Key Applications:</strong> Analytical procedures, outlier detection, population analysis, sample size determination</div>
+    </div>
+
+    <div class="formula-grid">
+        <div class="formula-card">
+            <h4>AVERAGE(range)</h4>
+            <p class="purpose">Calculates mean of numbers</p>
+            <code>=AVERAGE(F2:F2001)</code>
+            <p>Average debit amount</p>
+        </div>
+        <div class="formula-card">
+            <h4>MEDIAN(range)</h4>
+            <p class="purpose">Finds middle value</p>
+            <code>=MEDIAN(F2:F2001)</code>
+            <p>Less affected by outliers</p>
+        </div>
+        <div class="formula-card">
+            <h4>STDEV.P(range)</h4>
+            <p class="purpose">Standard deviation</p>
+            <code>=STDEV.P(F2:F2001)</code>
+            <p>Measure of variability</p>
+        </div>
+        <div class="formula-card">
+            <h4>COUNT(range)</h4>
+            <p class="purpose">Counts numbers only</p>
+            <code>=COUNT(F:F)</code>
+            <p>Count numeric entries</p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example: Outlier Detection</h5>
+        <p class="scenario">Scenario: Identify transactions more than 2 standard deviations from the mean for investigation.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(ABS(F2-AVERAGE(F:F))>2*STDEV.P(F:F), "OUTLIER", "Normal")</span>
+            <span class="result">Flags statistically unusual amounts</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate the average and standard deviation of debit amounts for "Salaries & Wages".</p>
+            <p><em>How many salary transactions are more than 1.5 standard deviations above the mean?</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SECTION 14: TEXT FORMULAS ==================== -->
+<div class="slide section-slide">
+    <span class="section-number">14</span>
+    <h2>Text Formulas</h2>
+    <p>LEFT, RIGHT, MID, LEN, TRIM, CONCATENATE, TEXTJOIN, FIND, SEARCH</p>
+</div>
+
+<div class="slide">
+    <h2>Text Manipulation for Data Cleaning</h2>
+    
+    <div class="workbook-ref">
+        <strong>📁 Primary Sheet:</strong> General_Ledger
+        <div class="columns"><strong>Key Applications:</strong> Data standardization, extracting information, cleaning imported data</div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example: Extract Username from Email</h5>
+        <p class="scenario">Scenario: The entered_by_email column contains emails. Extract just the username for user activity analysis.</p>
+        <div class="formula-box">
+            <span class="syntax">=LEFT(L2, FIND("@", L2)-1)</span>
+            <span class="result">• L2 = "john.doe@company.com"</span>
+            <span class="result">• FIND("@", L2) returns position of @ = 9</span>
+            <span class="result">• LEFT(L2, 8) returns "john.doe"</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Extract the domain name (company.com) from the email addresses.</p>
+            <p><em>How many different domains are used in the entered_by_email column?</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SECTION 15: DATE & TIME ==================== -->
+<div class="slide section-slide">
+    <span class="section-number">15</span>
+    <h2>Date & Time Functions</h2>
+    <p>DATE, TODAY, NOW, YEAR, MONTH, DAY, EOMONTH, NETWORKDAYS, DATEDIF</p>
+</div>
+
+<div class="slide">
+    <h2>Date Analysis for Audit Timing</h2>
+    
+    <div class="workbook-ref">
+        <strong>📁 Primary Sheet:</strong> General_Ledger
+        <div class="columns"><strong>Key Columns:</strong> B (date), J (posting_date) – analyze timing differences</div>
+    </div>
+
+    <div class="example-box">
+        <h5>Example: Calculate Posting Delay</h5>
+        <p class="scenario">Scenario: Analyze how long transactions take to be posted. Long delays may indicate control issues.</p>
+        <div class="formula-box">
+            <span class="syntax">=NETWORKDAYS(B2, J2)</span>
+            <span class="result">Counts business days between transaction and posting</span>
+        </div>
+        <div class="formula-box">
+            <span class="syntax">=IF(NETWORKDAYS(B2, J2) > 5, "⚠️ DELAYED > 5 DAYS", "OK")</span>
+            <span class="result">Flags transactions taking more than 5 business days to post</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Calculate the average posting delay for all transactions.</p>
+            <p><em>Which departments have the longest average posting delays?</em></p>
+        </div>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Audit Red Flags</h4>
+        <p><strong>Weekend Postings:</strong> May indicate unauthorized access, control override, or manipulation<br>
+        <strong>Long Posting Delays:</strong> May indicate timing manipulation, cut-off issues, or control weaknesses</p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 16: MIX AND MATCH ==================== -->
+<div class="slide section-slide" id="mixmatch">
+    <span class="section-number">16</span>
+    <h2>Formulas: Mix and Match</h2>
+    <p>Practical Applications Combining Multiple Functions</p>
+</div>
+
+<div class="slide">
+    <h2>Powerful Formula Combinations</h2>
+    
+    <div class="example-box">
+        <h5>Compare Lists – Verify Accounts Exist</h5>
+        <p class="scenario">Check if each account in General_Ledger exists in Chart_of_Accounts.</p>
+        <div class="formula-box">
+            <span class="syntax">=IF(ISNA(MATCH(C2, Chart_of_Accounts!$B$2:$B$9, 0)), "❌ INVALID", "✓ Valid")</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create a formula that shows "NEW VENDOR" for vendors not in master list and "EXISTING" for those that are.</p>
+            <p><em>What control recommendation would you make if many "NEW VENDOR" transactions exist?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>3-Way Lookup</h5>
+        <p class="scenario">Find transaction matching department + account + payment method.</p>
+        <div class="formula-box">
+            <span class="syntax">=INDEX(F:F, MATCH(1, (E:E="Administration")*(C:C="Salaries & Wages")*(K:K="Bank Transfer"), 0))</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Find the highest value transaction for "Academics" department paid via "Mobile Money".</p>
+            <p><em>Which lookup method is best for this: XLOOKUP, INDEX/MATCH, or array formula?</em></p>
+        </div>
+    </div>
+
+    <div class="example-box">
+        <h5>Get Closest Match to Target</h5>
+        <p class="scenario">Find transaction closest to KES 200,000.</p>
+        <div class="formula-box">
+            <span class="syntax">=INDEX(A:A, MATCH(MIN(ABS(F:F-200000)), ABS(F:F-200000), 0))</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Find the 5 transactions closest to the median transaction amount.</p>
+            <p><em>How could this be useful for audit sampling?</em></p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SECTION 17: NAMED RANGES ==================== -->
+<div class="slide section-slide" id="named">
+    <span class="section-number">17</span>
+    <h2>Named Ranges</h2>
+    <p>Creating, Managing, and Dynamic Named Ranges</p>
+</div>
+
+<div class="slide">
+    <h2>Named Ranges for Cleaner Formulas</h2>
+    
+    <p><strong>Purpose:</strong> Named ranges replace cell references with meaningful names, making formulas readable and easier to maintain.</p>
+
+    <h3>Creating Named Ranges</h3>
+    <ol class="steps">
+        <li>Select cells → Click Name Box (left of formula bar) → Type name → Enter</li>
+        <li>Or: Formulas tab → Define Name</li>
+        <li>Or: <kbd>Ctrl</kbd>+<kbd>F3</kbd> for Name Manager</li>
+    </ol>
+
+    <h3>Recommended Names for Audit Workbook</h3>
+    <table class="data-table">
+        <thead><tr><th>Name</th><th>Refers To</th><th>Use</th></tr></thead>
+        <tbody>
+            <tr><td>GL_Debits</td><td>=General_Ledger!$F$2:$F$2001</td><td>All debit amounts</td></tr>
+            <tr><td>GL_Accounts</td><td>=General_Ledger!$C$2:$C$2001</td><td>Account names</td></tr>
+            <tr><td>HighValueThreshold</td><td>=Audit_Parameters!$B$2</td><td>200,000 threshold</td></tr>
+        </tbody>
+    </table>
+
+    <div class="formula-box">
+        <span class="example">Before: =SUMIF(General_Ledger!$C$2:$C$2001, "Salaries", General_Ledger!$F$2:$F$2001)</span>
+        <span class="example">After:  =SUMIF(GL_Accounts, "Salaries", GL_Debits)</span>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create named ranges for GL_Credits, GL_Dates, and GL_Vendors.</p>
+        <p><em>Rewrite 3 SUMIFS formulas using these named ranges instead of cell references.</em></p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 18: DATA VALIDATION ==================== -->
+<div class="slide section-slide" id="validation">
+    <span class="section-number">18</span>
+    <h2>Data Validation</h2>
+    <p>Criteria, Input Messages, Error Messages</p>
+</div>
+
+<div class="slide">
+    <h2>Data Validation Techniques</h2>
+    
+    <p><strong>Purpose:</strong> Restrict what data can be entered in cells – essential for maintaining data integrity in audit workpapers.</p>
+
+    <h3>Creating Drop-down Lists</h3>
+    <ol class="steps">
+        <li>Select cells for validation</li>
+        <li>Data → Data Validation → List</li>
+        <li>Source: =Departments!$B$2:$B$5</li>
+    </ol>
+
+    <div class="example-box">
+        <h5>Custom Validation: Prevent Duplicates</h5>
+        <div class="formula-box">
+            <span class="syntax">=COUNTIF($A$2:$A$2001, A2)=1</span>
+            <span class="result">Only allows entry if tx_id doesn't already exist</span>
+        </div>
+        
+        <div class="exercise-box">
+            <h4>📝 Student Exercise</h4>
+            <p class="prompt">Create data validation for the account column that only allows accounts from Chart_of_Accounts.</p>
+            <p><em>What error message would be appropriate for invalid entries?</em></p>
+        </div>
+    </div>
+
+    <div class="tip-box">
+        <h4>Circle Invalid Entries</h4>
+        <p>Data → Data Validation → Circle Invalid Data – shows red circles around validation failures.</p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 19: SORTING & FILTERING ==================== -->
+<div class="slide section-slide" id="sorting">
+    <span class="section-number">19</span>
+    <h2>Data Sorting and Filtering</h2>
+    <p>Multi-level Sorting, AutoFilter, Advanced Filter</p>
+</div>
+
+<div class="slide">
+    <h2>Sorting & Filtering</h2>
+    
+    <h3>Multi-level Sorting</h3>
+    <p>Data → Sort → Add levels for hierarchical sorting:</p>
+    <table class="data-table">
+        <thead><tr><th>Level</th><th>Column</th><th>Order</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td>account</td><td>A to Z</td></tr>
+            <tr><td>2</td><td>department</td><td>A to Z</td></tr>
+            <tr><td>3</td><td>debit</td><td>Largest to Smallest</td></tr>
+        </tbody>
+    </table>
+
+    <h3>AutoFilter</h3>
+    <p><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> to toggle. Filter options include:</p>
+    <ul>
+        <li>Text: Contains, Begins With, Equals</li>
+        <li>Number: Greater Than, Between, Top 10</li>
+        <li>Date: This Month, Before, Between</li>
+    </ul>
+
+    <h3>Advanced Filter</h3>
+    <p>Create criteria range with same headers. Same row = AND logic; Different rows = OR logic.</p>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Filter to show only transactions that are:</p>
+        <ul>
+            <li>Amount > 100,000</li>
+            <li>Payment method = "Cash" OR "Mobile Money"</li>
+            <li>Date in Q1 2024</li>
+        </ul>
+        <p><em>How many transactions meet all these criteria?</em></p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 20: CONDITIONAL FORMATTING ==================== -->
+<div class="slide section-slide" id="conditional">
+    <span class="section-number">20</span>
+    <h2>Conditional Formatting</h2>
+    <p>Visual Data Analysis</p>
+</div>
+
+<div class="slide">
+    <h2>Conditional Formatting for Auditors</h2>
+    
+    <p><strong>Purpose:</strong> Automatically format cells based on their values – creates visual "heat maps" of your data for quick analysis.</p>
+
+    <h3>Formula-Based Rules</h3>
+    <p>Home → Conditional Formatting → New Rule → Use a formula</p>
+    
+    <table class="data-table">
+        <thead><tr><th>Rule Description</th><th>Formula (apply to row)</th></tr></thead>
+        <tbody>
+            <tr><td>Highlight "Review" transactions</td><td><code>=$H2="Review"</code></td></tr>
+            <tr><td>Weekend postings (red)</td><td><code>=WEEKDAY($J2,2)>5</code></td></tr>
+            <tr><td>High-value (>200K)</td><td><code>=$F2>200000</code></td></tr>
+            <tr><td>High-value cash</td><td><code>=AND($K2="Cash",$F2>100000)</code></td></tr>
+        </tbody>
+    </table>
+
+    <div class="tip-box">
+        <h4>Dynamic Search Highlight</h4>
+        <p>Highlight rows where account contains search term (in A1):</p>
+        <code>=ISNUMBER(SEARCH($A$1, $C2))</code>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create conditional formatting rules to:</p>
+        <ul>
+            <li>Highlight missing vendor names in yellow</li>
+            <li>Color-code departments (different color for each)</li>
+            <li>Show posting delays > 5 days in red</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ==================== SECTION 21: EXCEL CHARTING ==================== -->
+<div class="slide section-slide" id="charts">
+    <span class="section-number">21</span>
+    <h2>Excel Charting</h2>
+    <p>Visual Data Analysis</p>
+</div>
+
+<div class="slide">
+    <h2>Charts for Audit Presentations</h2>
+    
+    <div class="formula-grid">
+        <div class="formula-card">
+            <h4>Column/Bar</h4>
+            <p class="purpose">Compare categories</p>
+            <p>Use for: Department expenses, payment method distribution</p>
+        </div>
+        <div class="formula-card">
+            <h4>Line</h4>
+            <p class="purpose">Show trends over time</p>
+            <p>Use for: Monthly transaction volumes</p>
+        </div>
+        <div class="formula-card">
+            <h4>Pie</h4>
+            <p class="purpose">Show composition</p>
+            <p>Use for: Expense breakdown by account</p>
+        </div>
+        <div class="formula-card">
+            <h4>Combo</h4>
+            <p class="purpose">Multiple data types</p>
+            <p>Use for: Count + average on same chart</p>
+        </div>
+    </div>
+
+    <h3>Quick Chart Creation</h3>
+    <ol class="steps">
+        <li>Select data including headers</li>
+        <li>Insert → Recommended Charts</li>
+        <li>Choose style → OK</li>
+    </ol>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create a column chart showing total expenses by department.</p>
+        <p><em>Add a trendline to show which departments are increasing expenses over time.</em></p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 24: PIVOT TABLES ==================== -->
+<div class="slide section-slide" id="pivot">
+    <span class="section-number">24</span>
+    <h2>Pivot Tables</h2>
+    <p>The Auditor's Power Tool</p>
+</div>
+
+<div class="slide">
+    <h2>Pivot Tables for Audit Analysis</h2>
+    
+    <p><strong>Purpose:</strong> Pivot tables instantly summarize, group, and analyze large datasets. They're the most powerful tool for audit analytics.</p>
+
+    <h3>Creating a Pivot Table</h3>
+    <ol class="steps">
+        <li>Select any cell in data → Insert → PivotTable</li>
+        <li>Drag fields to: Rows, Columns, Values, Filters</li>
+    </ol>
+
+    <h3>Audit Analysis Examples</h3>
+    <table class="data-table">
+        <thead><tr><th>Analysis</th><th>Rows</th><th>Columns</th><th>Values</th></tr></thead>
+        <tbody>
+            <tr><td>Expense by Dept × Account</td><td>department</td><td>account</td><td>Sum of debit</td></tr>
+            <tr><td>Monthly trends</td><td>date (grouped by month)</td><td>-</td><td>Count, Sum</td></tr>
+            <tr><td>Payment method by flag</td><td>payment_method</td><td>fraud_flag</td><td>Count of tx_id</td></tr>
+            <tr><td>User activity</td><td>entered_by_email</td><td>-</td><td>Count, Sum, Avg</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Key Features</h3>
+    <ul>
+        <li><strong>Grouping:</strong> Right-click dates → Group by Month/Quarter/Year</li>
+        <li><strong>Slicers:</strong> Visual filter buttons (Insert → Slicer)</li>
+        <li><strong>Calculated Fields:</strong> PivotTable Analyze → Calculated Field</li>
+    </ul>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create a pivot table to answer: "Which user posted the highest total value of cash transactions?"</p>
+        <p><em>Add a slicer for department and a timeline for date filtering.</em></p>
+    </div>
+</div>
+
+<!-- Pivot Tables as Audit Evidence -->
+<div class="slide">
+    <h2>Pivot Tables as Audit Evidence</h2>
+
+    <h3>Audit Question 1: Which departments spend the most?</h3>
+    <table class="data-table">
+        <thead>
+            <tr><th>Rows</th><th>Values</th><th>Audit Insight</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>department</td>
+                <td>Sum of debit</td>
+                <td>Identify cost centers for substantive testing</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Audit Question 2: Are there risky payment methods?</h3>
+    <table class="data-table">
+        <thead>
+            <tr><th>Rows</th><th>Columns</th><th>Values</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>payment_method</td>
+                <td>fraud_flag</td>
+                <td>Count of tx_id</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="audit-scenario">
+        <h4>Audit Interpretation</h4>
+        <p>High counts of <strong>Cash + Review</strong> transactions indicate elevated fraud risk. These should be prioritized for vouching.</p>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create a pivot table to identify: "Which accounts have the highest percentage of weekend postings?"</p>
+        <p><em>What control weakness might this indicate?</em></p>
+    </div>
+</div>
+
+<!-- Pivot Table Red Flags -->
+<div class="slide">
+    <h2>Pivot Table Red Flags</h2>
+
+    <ul>
+        <li>Unusual spikes in one department month-on-month</li>
+        <li>High-value transactions clustered under one user</li>
+        <li>Cash payments dominating sensitive expense accounts</li>
+        <li>Transactions posted outside normal working days</li>
+    </ul>
+
+    <h3>Example: User Activity Pivot</h3>
+    <div class="formula-box">
+        <span class="example">Rows: entered_by_email | Values: Count of tx_id, Sum of debit</span>
+    </div>
+
+    <div class="audit-scenario">
+        <h4>Control Risk Indicator</h4>
+        <p>One user posting disproportionately high-value transactions may indicate override of controls.</p>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Create a pivot table showing monthly transaction volume by payment method.</p>
+        <p><em>Identify any unusual patterns that warrant further investigation.</em></p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 25: PROTECTION ==================== -->
+<div class="slide section-slide" id="protection">
+    <span class="section-number">25</span>
+    <h2>Protection</h2>
+    <p>Worksheet and Workbook Security</p>
+</div>
+
+<div class="slide">
+    <h2>Protection for Audit Workpapers</h2>
+    
+    <p><strong>Purpose:</strong> Prevent accidental changes to formulas and source data while allowing input in specific cells.</p>
+
+    <h3>Worksheet Protection Steps</h3>
+    <ol class="steps">
+        <li>Select cells users CAN edit</li>
+        <li>Format Cells → Protection → Uncheck "Locked"</li>
+        <li>Review → Protect Sheet → Set password</li>
+    </ol>
+
+    <h3>Protection Strategy</h3>
+    <table class="data-table">
+        <thead><tr><th>Cell Type</th><th>Locked?</th><th>Reason</th></tr></thead>
+        <tbody>
+            <tr><td>Source data</td><td>Yes ✓</td><td>Preserve audit evidence</td></tr>
+            <tr><td>Formulas</td><td>Yes ✓</td><td>Prevent accidental changes</td></tr>
+            <tr><td>Input parameters</td><td>No</td><td>Allow threshold updates</td></tr>
+        </tbody>
+    </table>
+
+    <div class="warning-box">
+        <h4>Important</h4>
+        <p>Excel protection prevents accidental changes, NOT unauthorized access. It's not security – passwords can be bypassed. For sensitive data, use proper access controls.</p>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Protect the Audit_Parameters sheet but allow changes to the threshold cells (B2:B4).</p>
+        <p><em>What password management practices should auditors follow?</em></p>
+    </div>
+</div>
+
+<!-- ==================== SECTION 26: MACROS ==================== -->
+<div class="slide section-slide" id="macros">
+    <span class="section-number">26</span>
+    <h2>Macros</h2>
+    <p>Automation with VBA</p>
+</div>
+
+<div class="slide">
+    <h2>Recording Macros</h2>
+    
+    <p><strong>Purpose:</strong> Automate repetitive tasks by recording your actions and replaying them.</p>
+
+    <h3>Recording Steps</h3>
+    <ol class="steps">
+        <li>Developer → Record Macro → Name it (no spaces)</li>
+        <li>Perform your actions (format, sort, create pivot, etc.)</li>
+        <li>Developer → Stop Recording</li>
+        <li>Run: Developer → Macros → Select → Run</li>
+    </ol>
+
+    <h3>Example VBA Code</h3>
+    <div class="formula-box">
+        <pre style="margin: 0; color: #e2e8f0;">Sub HighlightReviewItems()
+    Dim cell As Range
+    For Each cell In Range("H2:H2001")
+        If cell.Value = "Review" Then
+            cell.EntireRow.Interior.Color = RGB(255, 200, 200)
+        End If
+    Next cell
+End Sub</pre>
+    </div>
+
+    <div class="tip-box">
+        <h4>Save as .xlsm</h4>
+        <p>Macros require .xlsm format. Standard .xlsx files cannot contain VBA code.</p>
+    </div>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">Record a macro that:</p>
+        <ul>
+            <li>Filters for "Review" transactions</li>
+            <li>Copies them to a new sheet</li>
+            <li>Applies bold formatting to amounts > 200,000</li>
+        </ul>
+        <p><em>What are the audit documentation requirements for macros?</em></p>
+    </div>
+</div>
+
+<!-- Audit Assertions Mapping -->
+<div class="slide">
+    <h2>Excel Techniques Mapped to Audit Assertions</h2>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Audit Assertion</th>
+                <th>Excel Technique</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Completeness</td>
+                <td>COUNT, COUNTBLANK</td>
+                <td>Missing vendor names</td>
+            </tr>
+            <tr>
+                <td>Accuracy</td>
+                <td>SUMIFS, ROUND</td>
+                <td>Totals match trial balance</td>
+            </tr>
+            <tr>
+                <td>Classification</td>
+                <td>XLOOKUP</td>
+                <td>Valid account mapping</td>
+            </tr>
+            <tr>
+                <td>Occurrence</td>
+                <td>RAND sampling</td>
+                <td>Vouch sampled transactions</td>
+            </tr>
+            <tr>
+                <td>Cut-off</td>
+                <td>Date functions</td>
+                <td>Transactions in correct period</td>
+            </tr>
+            <tr>
+                <td>Existence</td>
+                <td>VLOOKUP/XLOOKUP</td>
+                <td>Verify vendor exists</td>
+            </tr>
+            <tr>
+                <td>Rights & Obligations</td>
+                <td>Data validation</td>
+                <td>Approved payment methods</td>
+            </tr>
+            <tr>
+                <td>Valuation</td>
+                <td>SUM, AVERAGE</td>
+                <td>Recalculate totals</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="exercise-box">
+        <h4>📝 Student Exercise</h4>
+        <p class="prompt">For each audit assertion, identify one additional Excel technique that could test it.</p>
+        <p><em>How would you document these tests in your audit workpapers?</em></p>
+    </div>
+</div>
+
+<!-- Summary Slides -->
+<div class="slide title-slide">
+    <h1>Training Complete!</h1>
+    <p class="subtitle">Advanced Microsoft Excel for Auditors</p>
+    <div class="workbook-info">
+        <h3>📊 You've Learned</h3>
+        <p>80+ Excel functions with contextual audit examples</p>
+        <p><strong>Practice:</strong> Audit_Training_Excel_Full_Workbook.xlsx (2,000 transactions)</p>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Quick Reference: Essential Audit Formulas</h2>
+    
+    <div class="two-col">
+        <div>
+            <h4>High-Value Detection</h4>
+            <div class="formula-box"><span class="example">=IF(F2>200000, "Review", "OK")</span></div>
+            
+            <h4>Weekend Posting</h4>
+            <div class="formula-box"><span class="example">=IF(WEEKDAY(J2,2)>5, "Weekend", "")</span></div>
+            
+            <h4>Posting Delay</h4>
+            <div class="formula-box"><span class="example">=NETWORKDAYS(B2, J2)</span></div>
+            
+            <h4>Duplicate Check</h4>
+            <div class="formula-box"><span class="example">=IF(COUNTIF(A:A,A2)>1, "DUP", "")</span></div>
+            
+            <h4>Data Completeness</h4>
+            <div class="formula-box"><span class="example">=IF(OR(ISBLANK(A2),ISBLANK(B2)), "Incomplete", "Complete")</span></div>
+        </div>
+        <div>
+            <h4>Validate Account</h4>
+            <div class="formula-box"><span class="example">=COUNTIF(AccountList, C2)>0</span></div>
+            
+            <h4>Safe Lookup</h4>
+            <div class="formula-box"><span class="example">=IFERROR(XLOOKUP(C2, Accounts, Types), "Invalid")</span></div>
+            
+            <h4>Extract Username</h4>
+            <div class="formula-box"><span class="example">=LEFT(L2, FIND("@",L2)-1)</span></div>
+            
+            <h4>Conditional Sum</h4>
+            <div class="formula-box"><span class="example">=SUMIFS(F:F, C:C, "Salaries", E:E, "Admin")</span></div>
+            
+            <h4>Random Sample</h4>
+            <div class="formula-box"><span class="example">=INDEX(A:A, RANDBETWEEN(2, COUNTA(A:A)))</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <h2>Keyboard Shortcuts</h2>
+    
+    <table class="data-table">
+        <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+        <tbody>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd></td><td>Toggle AutoFilter</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>T</kbd></td><td>Create Table</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>F3</kbd></td><td>Name Manager</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>`</kbd></td><td>Show/Hide Formulas</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>;</kbd></td><td>Insert Today's Date</td></tr>
+            <tr><td><kbd>Alt</kbd>+<kbd>F11</kbd></td><td>Open VBA Editor</td></tr>
+            <tr><td><kbd>F4</kbd></td><td>Toggle $ (absolute reference)</td></tr>
+            <tr><td><kbd>F3</kbd></td><td>Paste Name into formula</td></tr>
+            <tr><td><kbd>Alt</kbd>+<kbd>D</kbd>+<kbd>P</kbd></td><td>Create PivotTable</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>1</kbd></td><td>Format Cells</td></tr>
+            <tr><td><kbd>Alt</kbd>+<kbd>E</kbd>+<kbd>S</kbd>+<kbd>V</kbd></td><td>Paste Values</td></tr>
+            <tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>:</kbd></td><td>Insert Current Time</td></tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+</body>
+</html>
